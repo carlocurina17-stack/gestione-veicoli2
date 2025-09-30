@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gestione Veicoli & Tariffe Regionali</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>Gestione Veicoli & Tariffe Regionali</h1>
+    <p class="subtitle">Seleziona il veicolo, scegli la regione: la tariffa si compila da sola.</p>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Nuovo inserimento</h2>
+      <form id="recordForm" novalidate>
+        <div class="grid">
+          <div class="field">
+            <label for="vehicleInput">Veicolo *</label>
+            <input id="vehicleInput" name="vehicle" list="vehiclesList" placeholder="Es. Golf 7.5, Fiat Panda…" autocomplete="off" required />
+            <datalist id="vehiclesList"></datalist>
+          </div>
+
+          <div class="field">
+            <label for="regionSelect">Regione *</label>
+            <select id="regionSelect" name="region" required>
+              <option value="">— Seleziona la regione —</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="tariffInput">Tariffa (auto)</label>
+            <input id="tariffInput" name="tariff" type="text" readonly />
+          </div>
+        </div>
+
+        <div class="actions">
+          <button type="submit" id="addBtn" class="btn primary">Aggiungi</button>
+          <button type="reset" class="btn">Reset</button>
+        </div>
+
+        <div id="formErrors" class="errors"></div>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Elenco inserimenti</h2>
+      <div class="actions">
+        <button id="exportBtn" class="btn">Esporta JSON</button>
+        <label class="btn file">
+          Importa JSON
+          <input type="file" id="importInput" accept="application/json" />
+        </label>
+        <button id="clearBtn" class="btn danger">Svuota tutto</button>
+      </div>
+
+      <div class="table-wrap">
+        <table id="recordsTable" class="table">
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Veicolo</th>
+              <th>Regione</th>
+              <th>Tariffa</th>
+              <th>Azioni</th>
+            </tr>
+          </thead>
+          <tbody id="recordsBody">
+            <tr class="empty">
+              <td colspan="5">Nessun record ancora. Aggiungine uno dal form.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <script defer src="
